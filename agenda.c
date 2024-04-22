@@ -1,17 +1,37 @@
+#include <stdio.h>
+#include <string.h>
 #include "agenda.h"
 
-ERROS criar(Contato contatos[], int *ord ){
-  printf("Criar contato\n");
+void clearBuffer();
+
+ERROS criarContato(Contato contatos[], int *ord ){
+  if (*ord >= TOTAL)
+    return MAX_CONTATO;
+  printf("Digite o nome: ");
+  fgets(contatos[*ord].nome, 10, stdin);
+  clearBuffer();
+  printf("Digite o sobrenome: ");
+  fgets(contatos[*ord].sobrenome,10, stdin);
+  clearBuffer();
+  printf("Digite o email: ");
+  fgets(contatos[*ord].email, 20, stdin);
+  printf("Digite o telefone: ");
+  scanf("%d", contatos[*ord].telefone);
+  
 }
-ERROS deletar(Contato contatos[], int *ord ){
+ERROS deletarContato(Contato contatos[], int *ord ){
   printf("Deletar contato\n");
 }
-ERROS listar(Contato contatos[], int *ord ){
-  printf("Listar  \n");
+ERROS listarContato(Contato contatos[], int *ord ){
+  printf("listar \n");
 }
-ERROS salvar(Contato contatos[], int *ord ){
+ERROS salvarContato(Contato contatos[], int *ord ){
   printf("salvando");
 }
-ERROS carregar (Contato contatos[], int *ord ){
+ERROS carregarContato (Contato contatos[], int *ord ){
   printf("carregando");
+}
+void clearBuffer(){
+  int c;
+  while ((c = getchar()) != '\n' && c != EOF);
 }

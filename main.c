@@ -1,8 +1,9 @@
-#include "agenda.h"
 #include <stdio.h>
+#include "agenda.h"
+
 
 int main() {
-  funcao ct[] = {criar, deletar, listar, salvar, carregar};
+  funcao ct[] = {criarContato, deletarContato, listarContato, salvarContato, carregarContato};
   Contato contatos[TOTAL];
   int ord = 0;
   ERROS erro = ct[4](contatos, &ord);
@@ -19,13 +20,13 @@ int main() {
 
     {
     case 1:
-     erro = ct [0](contatos, &ord);
+      erro = ct[0](contatos, &ord);
       break;
     case 2:
       erro = ct[1](contatos, &ord);
       break;
     case 3:
-     erro = ct [2](contatos, &ord);
+      erro = ct[2](contatos, &ord);
       break;
     case 4:
       printf("Sair\n");
