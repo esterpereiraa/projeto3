@@ -12,14 +12,16 @@ typedef enum {
   SEM_CONTATO,
   ARQUIVO_NAO_ENCONTRADO,
   ABRIR,
+  ESCREVER,
   FECHAR,
   LER
-} ERROS;
+} RESULTADOS;
 
-typedef ERROS (*funcao)(Contato[], int *);
+typedef RESULTADOS (*funcao)(Contato[], int *);
 
-ERROS criarContato(Contato contatos[], int *ord);
-ERROS deletarContato(Contato contatos[], int *ord);
-ERROS listarContato(Contato contatos[], int *ord);
-ERROS salvarContato(Contato contatos[], int *ord);
-ERROS carregarContato(Contato contatos[], int *ord);
+RESULTADOS criarContato(Contato contatos[], int *ord);
+RESULTADOS deletarContato(Contato contatos[], int *ord);
+RESULTADOS listarContato(Contato contatos[], int *ord);
+RESULTADOS salvarContato(Contato contatos[], int *ord);
+RESULTADOS carregarContato(Contato contatos[], int *ord);
+void clearBuffer();

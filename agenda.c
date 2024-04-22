@@ -1,37 +1,61 @@
+#include "agenda.h"
 #include <stdio.h>
 #include <string.h>
-#include "agenda.h"
 
 void clearBuffer();
 
-ERROS criarContato(Contato contatos[], int *ord ){
+RESULTADOS criarContato(Contato contatos[], int *ord) {
   if (*ord >= TOTAL)
     return MAX_CONTATO;
   printf("Digite o nome: ");
   fgets(contatos[*ord].nome, 10, stdin);
   clearBuffer();
+
   printf("Digite o sobrenome: ");
-  fgets(contatos[*ord].sobrenome,10, stdin);
-  clearBuffer();
+  fgets(contatos[*ord].sobrenome, 10, stdin);
+
   printf("Digite o email: ");
   fgets(contatos[*ord].email, 20, stdin);
+
   printf("Digite o telefone: ");
   scanf("%d", contatos[*ord].telefone);
-  
+  *ord = *ord + 1;
+  return OK;
 }
-ERROS deletarContato(Contato contatos[], int *ord ){
-  printf("Deletar contato\n");
+RESULTADOS deletarContato(Contato contatos[], int *ord) { printf("deletar"); }
+RESULTADOS listarContato(Contato contatos[], int *ord) {
+  printf("listar");
 }
-ERROS listarContato(Contato contatos[], int *ord ){
-  printf("listar \n");
+RESULTADOS salvarContato(Contato contatos[], int *ord) {
+  FILE *arquivo = fopen("agenda.bin", "wb");
+  if (arquivo == NULL)
+    return ABRIR;
+  int quant = fwrite(contatos, TOTAL, sizeof(Contato), arquivo);
+  if (quant == 0)
+    return ESCREVER;
+  quant = fwrite(ord, sizeof(int), 1, arquivo);
+  if (quant == 0)
+    return ESCREVER;
+  if (fclose(arquivo))
+    return FECHAR;
+  return OK;
 }
-ERROS salvarContato(Contato contatos[], int *ord ){
-  printf("salvando");
+RESULTADOS carregarContato(Contato contatos[], int *ord) {
+  FILE *arquivo = fopen("agenda.bin", "rb");
+  if (arquivo == NULL)
+    return ABRIR;
+  int quant = fread(contatos, TOTAL, sizeof(Contato), arquivo);
+  if (quant == 0)
+    return LER;
+  quant = fread(ord, sizeof(int), 1, arquivo);
+  if (quant == 0)
+    return LER;
+  if (fclose(arquivo))
+    return FECHAR;
+  return OK;
 }
-ERROS carregarContato (Contato contatos[], int *ord ){
-  printf("carregando");
-}
-void clearBuffer(){
+void clearBuffer() {
   int c;
-  while ((c = getchar()) != '\n' && c != EOF);
+  while ((c = getchar()) != '\n' && c != EOF)
+    ;
 }
