@@ -1,10 +1,8 @@
-
 #include <stdio.h>
 #include "agenda.h"
 
 int main() {
-  funcao ct[] = {criarContato, deletarContato, listarContato, salvarContato,
-                 carregarContato};
+  funcao ct[] = {criarContato, deletarContato, listarContato, salvarContato, carregarContato};
   Contato contatos[TOTAL];
   int ord = 0;
   RESULTADOS resultado = ct[4](contatos, &ord);
@@ -24,7 +22,7 @@ int main() {
     case 1:
       resultado = ct[0](contatos, &ord);
       if (resultado == OK)
-        printf("contato salvo");
+        printf("\nCONTATO REGISTRADO\n");
         resultado = ct[3](contatos, &ord);
       break;
     case 2:

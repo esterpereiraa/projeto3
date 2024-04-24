@@ -1,9 +1,9 @@
 #define TOTAL 255
 typedef struct {
-  char nome[10];
-  char sobrenome[10];
+  char nome[20];
+  char sobrenome[20];
   int telefone[15];
-  char email[20];
+  char email[25];
 } Contato;
 
 typedef enum {
