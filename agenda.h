@@ -1,10 +1,10 @@
 #define TOTAL 255
 typedef struct {
-  char nome[20];
+  char nome[20]; 
   char sobrenome[20];
-  int telefone[15];
+  int telefone[15]; 
   char email[25];
-} Contato;
+} Contato; // struct para armazenar os contatos
 
 typedef enum {
   OK,
@@ -15,10 +15,10 @@ typedef enum {
   ESCREVER,
   FECHAR,
   LER
-} RESULTADOS;
-
+} RESULTADOS; // enum para retornar os resultados das funções
 typedef RESULTADOS (*funcao)(Contato[], int *);
 
+// funções
 RESULTADOS criarContato(Contato contatos[], int *ord);
 RESULTADOS deletarContato(Contato contatos[], int *ord);
 RESULTADOS listarContato(Contato contatos[], int *ord);
